@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f5f7fb">
+<meta name="description" content="Legal English 단어 연습 — 뜻을 읽고 영어 표제어를 입력하는 288개 법률영어 단어 퀴즈">
+<title>Legal English 단어 연습</title>
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="style.css">
+</head>
+<body><main class="shell">
+<header class="brand"><div class="mark">LE</div><div><h1>Legal English 단어 연습</h1><p>뜻을 읽고 영어 표제어를 직접 입력하세요</p></div></header>
+<section id="home" class="panel intro">
+<h2>오늘의 연습</h2><p>288개를 한 번에 다 하지 않아도 돼요. 20~30개씩 나눠 공부할 수 있습니다.</p>
+<div class="mode-grid" role="group" aria-label="학습 범위">
+<button class="mode active" data-mode="batch"><strong>묶음 학습</strong><small>20·24·25·30개씩</small></button>
+<button class="mode" data-mode="all"><strong>전체 단어</strong><small>모든 단어에서 출제</small></button>
+<button class="mode" data-mode="missed"><strong>오답 복습 <span id="missed-count">0</span></strong><small>틀린 단어만 다시 연습</small></button>
+<button class="mode" data-mode="starred"><strong>별표 단어 <span id="starred-count">0</span></strong><small>집중할 단어만 모아 연습</small></button>
+</div>
+<div id="batch-controls" class="batch-controls">
+<label for="batch-size">한 묶음 크기</label><select id="batch-size"><option value="20">20개</option><option value="24" selected>24개</option><option value="25">25개</option><option value="30">30개</option></select>
+<label for="batch-select">공부할 묶음</label><select id="batch-select"></select>
+</div>
+<details id="star-manager" class="star-manager"><summary>별표 단어 관리 <span id="star-manager-count">0</span></summary><ul id="starred-items"></ul></details>
+<button id="start" class="primary">선택한 묶음 시작</button>
+<div class="record-actions"><button id="export-records" class="secondary">학습 기록 내보내기</button><button id="import-records" class="quiet">파일에서 가져오기</button></div><input id="import-file" type="file" accept=".json,application/json" hidden>
+<p class="note">별표와 오답 기록은 브라우저에 저장돼요. JSON 파일로 내보내 다른 기기에 가져올 수 있어요.</p>
+</section>
+<section id="quiz" class="panel hidden" aria-live="polite">
+<div class="toolbar"><span id="mode-pill" class="pill">전체 단어</span><div class="toolbar-actions"><button id="star-toggle" class="quiet" type="button" aria-pressed="false">☆ 별표 추가</button><button id="quit" class="quiet">세션 끝내기</button></div></div>
+<div class="progress-track"><div id="progress" class="progress-fill"></div></div>
+<div class="stats"><span>문제 <strong id="position">0 / 0</strong></span><span>정답 <strong id="correct-count">0</strong></span><span>오답 <strong id="wrong-count">0</strong></span></div>
+<div class="definition-card"><div class="label">뜻풀이</div><div id="definition" class="definition"></div><button id="korean-toggle" class="text-button" type="button" aria-expanded="false">한국어 표제어 보기</button><div id="korean-hint" class="korean-hint hidden" aria-live="polite"></div></div>
+<form id="answer-form" autocomplete="off"><label class="label" for="answer">영단어 입력</label><div class="answer-row"><input id="answer" type="text" autocapitalize="off" spellcheck="false" placeholder="영어 단어를 입력하세요" enterkeyhint="go" required><button type="submit">채점</button></div></form>
+<div id="feedback" class="feedback hidden" role="status"></div>
+<div id="judgement-controls" class="judgement-controls hidden" role="group" aria-label="답안 직접 판정"><span>답안을 다시 판단할 수 있어요</span><button id="mark-correct" type="button" class="secondary">맞았다고 하기</button><button id="mark-wrong" type="button" class="quiet">틀렸다고 하기</button></div>
+<div id="actions" class="actions hidden"><button id="next" class="secondary">다음 문제</button></div>
+<p class="note">Enter 키로 채점할 수 있어요. 틀린 단어는 잠시 뒤 한 번 더 나옵니다.</p>
+</section>
+<section id="result" class="panel hidden"><div class="end"><div id="final-score" class="score">0%</div><h2 id="result-title">연습 완료</h2><p id="result-copy"></p><div class="end-actions"><button id="next-batch" class="secondary hidden">다음 묶음 시작</button><button id="again" class="primary">전체 단어 다시 풀기</button><button id="review" class="secondary">오답 복습하기</button><button id="back-home" class="quiet">처음으로</button></div></div><details id="wrong-list" class="error-list"><summary>이번 세션에서 틀린 단어 보기</summary><ul id="wrong-items"></ul></details></section>
+<footer class="bottom">Fall 2026 · Common Law &amp; Legal English</footer>
+</main><div id="toast" class="toast" role="status"></div>
+<script src="words.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
